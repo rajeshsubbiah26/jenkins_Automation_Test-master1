@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class FacebookTest {
 	
@@ -19,9 +20,13 @@ public class FacebookTest {
 	@BeforeTest
 	public void testStart() {
 		
-		driver = new FirefoxDriver();
+		 ChromeOptions options = new ChromeOptions();
+         options.addArguments("headless");
+         options.addArguments("window-size=1200x600");
+		// driver = new FirefoxDriver();
 
-		// driver = new ChromeDriver();
+		driver = new ChromeDriver(options);
+		//WebDriver driver = new ChromeDriver(options);
 	}
 	@Test
 	public void testFacebook() {
