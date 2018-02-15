@@ -12,21 +12,23 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class FacebookTest {
 	
-	WebDriver driver;
+	HtmlUnitDriver driver;
 	
 	@BeforeTest
 	public void testStart() {
 		
-		 ChromeOptions options = new ChromeOptions();
-         options.addArguments("headless");
-         options.addArguments("window-size=1200x600");
+		 //ChromeOptions options = new ChromeOptions();
+         //options.addArguments("headless");
+        // options.addArguments("window-size=1200x600");
 		// driver = new FirefoxDriver();
 
-		driver = new ChromeDriver(options);
+		//driver = new ChromeDriver(options);
 		//WebDriver driver = new ChromeDriver(options);
+		driver = new HtmlUnitDriver();
 	}
 	@Test
 	public void testFacebook() {
@@ -34,11 +36,13 @@ public class FacebookTest {
 		driver.get("https://www.facebook.com");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		System.out.println("Title of the page is : "+driver.getTitle());
+		System.out.println("Browser in use : "+driver.getBrowserVersion());
 		driver.findElement(By.id("email")).sendKeys("abc");
 		driver.findElement(By.id("pass")).sendKeys("abc");
-		//driver.findElement(By.xpath("//input[@value='Log In']")).click();
-		driver.findElement(By.xpath("//*[@id=\"u_0_2\"]")).click();
-		//*[@id="u_0_2"]
+		driver.findElement(By.xpath("//input[@value='Log In']")).click();
+		//driver.findElement(By.xpath("//*[@id=\"u_0_2\"]")).click();
+	
 		
 	}
 	
